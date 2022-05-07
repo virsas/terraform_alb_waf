@@ -16,7 +16,30 @@ Create a firewall for your ALB to filter out bad traffic.
 ##############
 # Variable
 ##############
-# will be added soon
+variable "alb_waf_main" {
+  default = {
+    name = "alb_waf_main"
+    sampled = true
+    cloudwatch = true
+    rules = [
+      { 
+        name = "AWSManagedRulesCommonRuleSet"
+        vendor = "AWS"
+        priority = 2
+        excludes = [
+          { name = "GenericRFI_BODY" },
+          { name = "SizeRestrictions_BODY" }
+        ]
+      },
+      {
+        name = "AWSManagedRulesSQLiRuleSet"
+        vendor = "AWS"
+        priority = 1
+        excludes = []
+      }
+    ]
+  }
+}
 
 ##############
 # Module
