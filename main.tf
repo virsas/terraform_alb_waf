@@ -2,7 +2,7 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_wafv2_web_acl" "main" {
+resource "aws_wafv2_web_acl" "waf" {
   name     = var.waf.name
   scope    = "REGIONAL"
 
@@ -50,5 +50,5 @@ resource "aws_wafv2_web_acl" "main" {
 
 resource "aws_wafv2_web_acl_association" "web_acl_association_my_lb" {
   resource_arn = var.alb
-  web_acl_arn  = aws_wafv2_web_acl.main.arn
+  web_acl_arn  = aws_wafv2_web_acl.waf.arn
 }
