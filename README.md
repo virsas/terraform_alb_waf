@@ -45,7 +45,7 @@ variable "alb_waf_main" {
 # Module
 ##############
 module "alb_main_waf" {
-  source = "github.com/virsas/terraform_alb_waf"
+  source = "git::https://github.com/virsas/terraform_alb_waf.git?ref=v1.0.0"
   alb = module.alb_main.arn
   waf = var.alb_waf_main
 }
